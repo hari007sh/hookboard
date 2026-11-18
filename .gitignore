@@ -1,7 +1,9 @@
-
-# Beads / Dolt files (added by bd init)
-.dolt/
-*.db
-.beads-credential-key
-.beads/proxieddb/
-*.gate.lock*
+node_modules
+.env
+dist
+web/dist
+web/node_modules
+.env.local
+.playwright-mcp
+.beads.gate.lock
+supabase/.temp
