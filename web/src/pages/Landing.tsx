@@ -19,20 +19,14 @@ const FANNED = [
 ];
 
 export default function Landing() {
-  const { enabled, signInWithGoogle, session } = useAuth();
+  const { enabled, session } = useAuth();
   const navigate = useNavigate();
   const origin = typeof window === "undefined" ? "" : window.location.origin;
   const embedSnippet = `<script src="${origin}/widget.js" data-niche="your niche" async></script>`;
   const mcpSnippet = `claude mcp add hookboard -- npx tsx /path/to/hookboard/src/mcp/index.ts`;
 
-  const startWithGoogle = async () => {
-    if (session) return navigate("/app");
-    try {
-      await signInWithGoogle();
-    } catch {
-      navigate("/login");
-    }
-  };
+  // Google's own button lives on /login (it must be rendered by Google), so the landing CTAs go there.
+  const startWithGoogle = () => navigate(session ? "/app" : "/login");
 
   return (
     <div className="min-h-dvh">

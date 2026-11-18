@@ -3,6 +3,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router";
 import { GoogleIcon, Logo, PhoneFrame } from "../components/ui";
 import { useAuth } from "../lib/auth";
+import { GoogleSignInButton, googleButtonAvailable } from "../lib/googleButton";
 
 export default function Login() {
   const { enabled, session, signInWithGoogle, signInWithEmail } = useAuth();
@@ -59,9 +60,18 @@ export default function Login() {
             </div>
           ) : (
             <>
-              <button type="button" disabled={busy} onClick={() => run(signInWithGoogle)} className="btn-ghost mt-8 w-full py-3 text-base shadow-sticker">
-                <GoogleIcon /> Continue with Google
-              </button>
+              {googleButtonAvailable ? (
+                <div className="mt-8 grid gap-2">
+                  <GoogleSignInButton oneTap onError={setError} />
+                  <button type="button" className="text-center text-xs text-ink-soft underline" onClick={() => run(signInWithGoogle)}>
+                    Google button not showing? Sign in another way
+                  </button>
+                </div>
+              ) : (
+                <button type="button" disabled={busy} onClick={() => run(signInWithGoogle)} className="btn-ghost mt-8 w-full py-3 text-base shadow-sticker">
+                  <GoogleIcon /> Continue with Google
+                </button>
+              )}
               <div className="my-6 flex items-center gap-3 text-sm text-ink-soft">
                 <span className="h-px flex-1 bg-line" /> or <span className="h-px flex-1 bg-line" />
               </div>
