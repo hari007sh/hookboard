@@ -1,0 +1,26 @@
+# Runs on the server. Cloudflare Tunnel publishes hookboard.net without opening any ports.
+name: hookboard
+services:
+  app:
+    build:
+      context: ..
+      args:
+        VITE_SUPABASE_URL: ${VITE_SUPABASE_URL}
+        VITE_SUPABASE_PUBLISHABLE_KEY: ${VITE_SUPABASE_PUBLISHABLE_KEY}
+        VITE_GOOGLE_CLIENT_ID: ${VITE_GOOGLE_CLIENT_ID}
+    env_file: ../.env
+    restart: unless-stopped
+    networks: [edge]
+
+  tunnel:
+    image: cloudflare/cloudflared:2026.11.1
+    command: tunnel --no-autoupdate --config /etc/cloudflared/config.yml run
+    volumes:
+      - ./cloudflared:/etc/cloudflared:ro
+    restart: unless-stopped
+    depends_on: [app]
+    networks: [edge]
+
+networks:
+  edge:
+    name: edge

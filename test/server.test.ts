@@ -74,6 +74,14 @@ describe("HTTP API (live)", () => {
     expect(capped.status).toBe(429);
   });
 
+  it("limits anonymous visitors by their Cloudflare client IP, not the tunnel's", async () => {
+    const app = createApp({ serverHasKey: true, plannerFor: () => createPlanner({ demo: true }), anonLimit: 1 });
+    const body = { topic: "x1", niche: "yy" };
+    expect((await request(app).post("/api/hooks").set("cf-connecting-ip", "1.1.1.1").send(body)).status).toBe(200);
+    expect((await request(app).post("/api/hooks").set("cf-connecting-ip", "1.1.1.1").send(body)).status).toBe(429);
+    expect((await request(app).post("/api/hooks").set("cf-connecting-ip", "2.2.2.2").send(body)).status).toBe(200);
+  });
+
   it("rejects a bad session token instead of silently treating it as anonymous", async () => {
     const app = createApp({ serverHasKey: true, plannerFor: () => createPlanner({ demo: true }), verifyUser: async () => null });
     const res = await request(app).post("/api/hooks").set("authorization", "Bearer bad").send({ topic: "x1", niche: "yy" });

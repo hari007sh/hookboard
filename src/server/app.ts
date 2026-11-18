@@ -46,7 +46,9 @@ export function createApp(opts: AppOptions) {
       planner = plannerFor(callerKey);
     } else if (opts.serverHasKey) {
       const token = req.header("authorization")?.match(/^Bearer\s+(.+)$/i)?.[1];
-      let bucket = `ip:${req.ip ?? "unknown"}`;
+      // Behind Cloudflare Tunnel the socket peer is the tunnel; Cloudflare passes the visitor in cf-connecting-ip.
+      const clientIp = req.header("cf-connecting-ip") ?? req.ip ?? "unknown";
+      let bucket = `ip:${clientIp}`;
       let limit = anonLimit;
       if (token && opts.verifyUser) {
         const userId = await opts.verifyUser(token).catch(() => null);

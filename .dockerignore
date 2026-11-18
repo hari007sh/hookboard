@@ -1,0 +1,11 @@
+node_modules
+web/node_modules
+web/dist
+.env
+.env.*
+!.env.example
+web/.env.local
+.git
+.beads
+.playwright-mcp
+supabase/.temp

@@ -161,11 +161,11 @@ max_indexes = 5
 enabled = true
 # The base URL of your website. Used as an allow-list for redirects and for constructing URLs used
 # in emails.
-site_url = "http://localhost:8790"
+site_url = "https://hookboard.net"
 # The public URL that Auth serves on. Defaults to the API external URL with `/auth/v1` appended.
 # external_url = ""
 # A list of *exact* URLs that auth providers are permitted to redirect to post authentication.
-additional_redirect_urls = ["http://localhost:8790/**", "http://127.0.0.1:8790/**", "http://localhost:5173/**"]
+additional_redirect_urls = ["https://hookboard.net/**", "https://www.hookboard.net/**", "http://localhost:8790/**", "http://127.0.0.1:8790/**", "http://localhost:5173/**"]
 # How long tokens are valid for, in seconds. Defaults to 3600 (1 hour), maximum 604,800 (1 week).
 jwt_expiry = 3600
 # JWT issuer URL. If not set, defaults to auth.external_url.
@@ -431,7 +431,7 @@ enabled = true
 # Google sign-in. Client ID/secret are set in the Supabase dashboard (config push does not manage them).
 [auth.external.google]
 enabled = true
-client_id = "env(SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID)"
+client_id = "72147684560-nluii977390kv4spfc8ujckb05g1itd1.apps.googleusercontent.com"
 secret = "env(SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET)"
 redirect_uri = ""
 url = ""
