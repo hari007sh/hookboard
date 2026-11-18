@@ -50,7 +50,7 @@ export function Privacy() {
         <li><strong>Anthropic</strong> (Claude) receives what you type into the planner so it can write your plan. Anthropic does not use API inputs to train its models by default.</li>
         <li><strong>Supabase</strong> stores accounts and saved plans (hosted in Canada).</li>
         <li><strong>Google</strong> handles sign-in if you choose "Continue with Google".</li>
-        <li><strong>Render</strong> hosts the Hookboard website and API.</li>
+        <li><strong>Cloudflare</strong> delivers the Hookboard website and protects it from abuse.</li>
       </ul>
 
       <h2>Your own API key</h2>
