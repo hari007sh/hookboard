@@ -7,3 +7,4 @@ web/node_modules
 .playwright-mcp
 .beads.gate.lock
 supabase/.temp
+deploy/cloudflared/*.json
