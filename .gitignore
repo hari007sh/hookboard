@@ -8,3 +8,14 @@ web/node_modules
 .beads.gate.lock
 supabase/.temp
 deploy/cloudflared/*.json
+
+# Local-only: AI assistant config, issue tracker, internal ops notes
+.beads/
+.agents/
+.cursor/
+.codex/
+.claude/
+AGENTS.md
+CLAUDE.md
+ops/
+deploy/cloudflared/

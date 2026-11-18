@@ -1,4 +1,4 @@
-# Runs on the server. Cloudflare Tunnel publishes hookboard.net without opening any ports.
+# Cloudflare Tunnel publishes the app without opening any inbound ports.
 name: hookboard
 services:
   app:
