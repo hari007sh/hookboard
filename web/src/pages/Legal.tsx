@@ -3,7 +3,7 @@ import { Nav } from "../components/Nav";
 import { Footer } from "../components/ui";
 
 const UPDATED = "November 17, 2026";
-const CONTACT = "privacy@hookboard.app";
+const CONTACT = "hello@hookboard.net";
 
 function LegalPage({ title, children }: { title: string; children: ReactNode }) {
   return (
